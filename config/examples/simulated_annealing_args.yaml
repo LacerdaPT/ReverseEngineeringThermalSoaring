@@ -22,7 +22,7 @@ run_parameters:
   n_processors: 1
 search_parameters:
   loss_function: closure
-  individual_search: true
+  individual_search: false
   na_penalty: 0
   parameters_to_search:
   - wing_loading

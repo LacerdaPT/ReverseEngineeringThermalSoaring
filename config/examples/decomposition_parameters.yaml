@@ -64,7 +64,7 @@ physical_parameters:
   #    mass: 3.3
   CL: 1.5
   CD: 0.09
-  mass: 3
+  mass: 3.6
   wing_area: 0.6
 
 binning_parameters:
