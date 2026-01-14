@@ -25,6 +25,7 @@ Note: for further details please refer to https://docs.python.org/3.9/library/ve
 `pip install -r requirements.txt`
 
 ## Usage examples.
+Note: In the following, the commands are written in Unix style and it may differ for other operating systems such as Microsoft Windows, e.g., the path `config/examples` should rewritten `config\examples` in Windows systems. The same would happen in the configuration yaml files.
 ### Run Flock Simulation
 `python run_flock_simulation.py config/examples/bird_generate.yaml`
 
@@ -40,24 +41,24 @@ Check `config/default/simulated_annealing_args.default.yaml` and `config/default
 for details.
 ### Post-Processing
 #### On reverse-engineering output data 
-`python run_reverse_engineering_postprocess.py example/decomposition`
+`python run_reverse_engineering_postprocess.py -pd example/optimization/0`
 
 For details run: `python run_reverse_engineering_postprocess.py --help`
 
-`python run_further_decomposition.py example/decomposition`
+`python run_further_decomposition.py -i example/optimization/0/final/reconstructed/`
 
 For details run: `python run_further_decomposition.py --help`
 #### On optimization procedure
-`python run_optimization_postprocessing.py config/examples/simulated_annealing_args.yaml`
+`python run_optimization_postprocessing.py --config-file config/examples/simulated_annealing_args.yaml`
 
 For details run: `python run_optimization_postprocessing.py --help`
 
 ### Analyses
-`python run_air_autocorrelation_estimation.py example/decomposition`
+`python run_air_autocorrelation_estimation.py -i example/optimization/0/final/reconstructed/ -o example/results/autocorrelations`
 
 For details run: `python run_air_autocorrelation_estimation.py --help`
 
-`python run_air_fluctuations_calculation.py example/decomposition`
+`python run_air_fluctuations_calculation.py  -i example/optimization/0/final/reconstructed/ -o example/results/fluctuations`
 
 ## Contact information.
 Please get in touch at p.v.lacerda(at)gmail.com
