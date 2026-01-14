@@ -231,8 +231,7 @@ def decomposition_last_iteration(current_iteration, current_physical_parameters,
          current_spline_stats) = decomposition_iteration(current_iteration, current_physical_parameters, thermal_core_ma_args,
                                                          smoothing_ma_args,
                                                          binning_parameters, spline_parameters, dt, min_occupation,
-                                                         max_radius=max_radius, previous_iteration=None,
-                                                         iteration_damping=1, step_damping=1, debug_dict=debug_dict)
+                                                         max_radius=max_radius,  debug_dict=debug_dict)
     except Exception as e:
         raise Exception(str(e))
     current_loss, N_NA, N_total = calculate_decomposition_loss(current_iteration=current_iteration,
