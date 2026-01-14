@@ -1,0 +1,41 @@
+run_parameters:
+  save: True                              # Whether or not to save
+  output_folder: 'test/SA/'
+  save_all_iterations: false              # Whether or not to save the reverse engineering results of all simulated annealing steps
+  continue_annealing: true                # Whether to continue a previous optimization in the case output_folder contains annealing_history.csv
+  n_processors: null                      # number of processors to use when searching simultaneously with several datasets
+  verbosity: 'info'                       # Level of verbosity of the logging on to the standard output
+  debug: False
+
+decomposition_parameters:                 # Path to the decomposition configuration file to be used.
+  file: 'test/decomposition_args.yml'
+
+annealing_parameters:
+  max_iter: 20                            # number of simulated annealing steps
+  temperature: 10                         # initial temperature
+  annealing_type: 'cauchy'                # Type of annealing determines the distribution from which new candidates are drawn and the temperature schedule
+  n_consecutive_exception_max: null       # number of consecutive function evaluations that result in exception before optimization is halted
+  x0: null                                # initial candidate. null will result in a random chosen value
+  max_fiter: 10000                        # maximum number of function evaluations
+  no_local_search: true                   # choose false to perform a local gradient-based search when a new local
+                                          # minimum is found
+  minimizer_kwargs:                       # keyword-arguments to be used by the minimizer during local search. Ignored if no_local_search=true
+    options:
+      disp: true
+      maxiter: 5
+    tol: 0.01
+
+
+search_parameters:
+  parameters_to_search: ['wing_loading']  # Parameter to optimize
+  loss_function: closure                  # loss function to use
+  individual_search: true                 # If false, the search will happen on a single value which will be used for all gliders.
+                                          # If true, in each iteration each glider will have its own candidate value
+  na_penalty: 0.0                         # factor to multiple the number of NaN or inf to serve as a penalty added to the loss_function
+  search_limits:                          # Search boundaries per parameter. Only the boundaries corresponding to
+                                          #values in parameters_to_search will be used
+    mass: [2, 4]
+    CD: [0.01, 1]
+    CL: [0.8, 3]
+    wing_area: [0.1, 2]
+    wing_loading: [4, 8]

@@ -1,0 +1,33 @@
+
+root_path = '/home/pedro/PycharmProjects/ThermalModelling'
+turbulence_lookup_mpers = {0: 0.22,
+                           1: 0.30,
+                           2: 0.28,
+                           3: 0.42,
+                           4: 0.41,
+                           5: 0.61, }
+
+list_of_storks = ['Balou',
+                  'Betty',
+                  'Bubbel',
+                  'Conchito',
+                  'Cookie',
+                  'Crisps',
+                  'Ekky',
+                  'Ella',
+                  'Fanny',
+                  'Fifi',
+                  'Flummy',
+                  'Frank',
+                  'Hannibal',
+                  'Kim',
+                  'Kristall',
+                  'Mirabell',
+                  'Muffine',
+                  'Niclas',
+                  'Ohnezahn',
+                  'Peaches',
+                  'Redrunner',
+                  'Ronja',
+                  'Snowy',
+                  'Tobi']

@@ -1,0 +1,81 @@
+
+run_parameters:
+  alpha: 0.9
+  n_iterations: 30                                # Maximum number of iterations
+  verbosity: "info"                               # Verbosity level of the logging to the standard output
+  save: True                                      # Whether or not the save the data
+  save_only_last: false                           # Whether or not to save only the last iteration
+  input_folder: 'synthetic_data/test_data'        # path to input data.csv
+  output_folder: null                             # path to save the reverse-engineered data
+  dt: 1                                           # time interval between data points
+  # Early stopping
+  n_relative_change: 3                            # number of consecutive iterations in stopping condition
+  relative_change_threshold: 0                    # threshold of the relative change below which the iteration is considered in stopping condition
+  min_iter: 12                                    # minimum number of iterations to the reverse engineering
+  debug: False
+
+data_parameters:
+  columns:                                        # Name of the columns on data.csv
+    time_col: 'time'                              # time
+    bird_name_col: 'bird_name'                    # glider identified
+    X_col: 'X'                                    # X coordinate
+    Y_col: 'Y'                                    # Y coordinate
+    Z_col: 'Z'                                    # Z coording
+#  filters:                                        # OPTIONAL - Whether a filter should be applied to the data.
+#                                                  # In this example Z variable will be filtered 50 above the minimum and 50 below the maximum
+#    Z:
+#      min: 50
+#      max: -50
+#      filter_type: 'relative'
+
+spline_parameters:                                # Parameters to define the spline that represents the thermal core
+  degree: 3                                       # Degree of the spline
+  smoothing_factor: 1
+  extrapolate: 'linear'                           # Extrapolation type
+                                                  # extrapolate=0, return the extrapolated value.
+                                                  # extrapolate=1, return 0
+                                                  # extrapolate=2, raise a ValueError
+                                                  # extrapolate=3, return the boundary value.
+                                                  # extrapolate='linear', linear extrapolation is conducted based on the derivative at the edge of the spline domain
+  weighted: true
+  weight_normalization: true
+
+
+thermal_core_ma_args:                             # Parameters to define the moving statistics used during the thermal core estimation
+  window: 1000                                    # For details see: https://pandas.pydata.org/pandas-docs/version/2.2/reference/api/pandas.Series.rolling.html
+  min_periods: 300
+  center: True
+  win_type: 'gaussian'
+  window_args:
+    std: 300
+  max_radius: 30
+  debug: False
+
+smoothing_ma_args:                  # Parameters for applying smoothing when calculating derivatives, e.g., velocities from positions, or accelerations from velocities
+  window: 3                         # For details see: https://pandas.pydata.org/pandas-docs/version/2.2/reference/api/pandas.Series.rolling.html
+  min_periods: 1
+  center: True
+  win_type: 'gaussian'
+  window_args:
+    std: 1
+
+physical_parameters:                # Physical parameters to when applying the flight dynamics model
+                                    # If constant, the value will be shared among all gliders.
+  CL: 1.2                           # Lift Coefficient
+  CD: 0.08                          # Drag Coefficient
+  mass: 3                           # Mass, in kg
+  wing_area: 0.6                    # Wing Area, in m^2
+  # wing_loading                    # Wing loading, in kg/m^2. If wing_loading is given, mass and wing area will *not* be used.
+  debug: False
+
+binning_parameters:                 # Parameters to define the cylindrical bins to calculate local statistics (e.g. mean) during
+                                    # air velocity calculations
+  n_bins: [20, 20]                  # number of equally-occupied bins in the vertical, azimuthal and radial directions, respectively
+                                    # If a list of 3 is given and method='adaptive', the last number is ignored.
+  method: 'adaptive'                # two options: 'adaptive' for adaptively define limits of the bins in the radial direction
+                                    #              'grid' for defining equally-occupied bins in all 3 cylindrical directions
+  adaptive_kwargs:                  # Parameters for determining the adaptive bins
+    adaptive_bin_min_size: 1        # Minimum radial size of each bin allowed, in meter.
+    adaptive_bin_max_size: 5        # Maximum radial size of each bin allowed, in meter.
+    max_bin_count: 10               # Maximum occupation of each bin
+  debug: False

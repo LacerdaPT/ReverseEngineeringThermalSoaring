@@ -1,0 +1,4 @@
+/data_files/
+/config/*
+!/config/default
+/venv/
