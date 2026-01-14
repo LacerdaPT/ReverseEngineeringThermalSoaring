@@ -2,6 +2,8 @@
 
 
 ## Brief project description.
+This repository contains the code used in the project "Soaring, aerodynamics and complex flows in thermals". 
+
 ## Installation instructions.
 ### Clone repository
 ### Dependencies
@@ -44,14 +46,5 @@ Note: for further details please refer to https://docs.python.org/3.9/library/ve
 
 `python run_air_fluctuations_calculation.py example/decomposition`
 
-
-
-
-
-
-## Features or functionalities.
-## Configuration options.
-## Contributing guidelines.
-## Licensing information.
-
 ## Contact information.
+Please get in touch at p.v.lacerda(at)gmail.com
