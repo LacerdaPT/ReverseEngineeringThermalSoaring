@@ -4,7 +4,7 @@
 
     python run_flock_simulation.py glider_generate.yaml
 
-The yaml configuration file comprises three parts: run, bird and air.
+The yaml configuration file comprises three parts: run, bird and air. Please check `config/default/bird_generate.yaml` for the explanation of all parameters
 
 ### run
 This section contains parameters necessary for the simulation itself to run, such as, number of gliders in the flock,
@@ -58,8 +58,35 @@ function with name `rotating_wind` on a file called `my_functions.py`
           period: 100
    ```
 3. Randomly generated velocities: two methods may be used: 
-   1. `random`: 
-   2. `random_walk`
+   1. `random` - A distribution (determined by `distribution` and `parameters` keywords) will be used to sample the wind 
+   velocities in a grid (defined with the keywords `n_steps` and `limits`). In the following example a gaussian with
+   mean $\mu=0$ and $\sigma=0.4$ will be used to sample the 2 components of the wind in a 10x10 grid spanning the region
+   $x \in [-1000, 1000]$ and $z \in [0, 1000]$.
+   ```
+   generate:
+     method: random
+      distribution: 'normal'
+      parameters:
+        loc: 0
+        scale: 0.4
+      n_steps: 10
+      limits:
+        x: [-1000, 1000]
+        z: [0, 1000]
+   ```
+   2. `random_walk` - A gaussian multidimensional random walk will define each component of the wind velocity 
+   indepedently in a grid (defined with the keywords `n_steps` and `limits`). In the following example a 2-dimensional gaussian random walk with mean $\mu=1$ and $\sigma=0.2$ will be used to determine each component of the wind in a 10x10 grid spanning the region
+   $x \in [-1000, 1000]$ and $z \in [0, 1000]$.
+   ```
+   generate:
+    method: random_walk
+    mean: 1
+    std: 0.2
+      n_steps: 10
+      limits:
+        x: [-1000, 1000]
+        z: [0, 1000]
+   ```
 4. From data: one can define the wind directly from data by giving a list of positions and time (`XYZT_values`)and a list 
 of wind values (`values`). Both list must have the same length. One last parameter (`used_vars`)  must be given to 
 indicate which coordinates were used in `XYZT_values`. These lists are then used to defined a function by linear interpolation.

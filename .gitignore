@@ -1,5 +1,6 @@
 /data_files/
 /config/*
 !/config/default
+!/config/examples
 /venv/
 /.idea
