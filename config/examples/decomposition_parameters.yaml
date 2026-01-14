@@ -9,8 +9,8 @@ run_parameters:
   verbosity: 1
   save: true
   save_only_last: false
-  input_folder: 'testing_dataset/None'
-  output_folder: 'testing_dataset/None/decomposition'
+  input_folder: 'example'
+  output_folder: 'example/reverse_engineering'
   dt: 1
   debug: false
 

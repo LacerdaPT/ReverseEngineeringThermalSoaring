@@ -10,12 +10,12 @@ annealing_parameters:
   temperature: 1
 decomposition_parameters:
   file:
-  - /home/pedro/PycharmProjects/ReverseEngineeringThermalSoaring/config/examples/decomposition_parameters.yaml
+  - config/examples/decomposition_parameters.yaml
 run_parameters:
   continue_annealing: true
   debug: true
   input_folder: null
-  output_folder: example/decomposition/SA
+  output_folder: example/optimization
   save: true
   save_all_iterations: false
   verbosity: debug
