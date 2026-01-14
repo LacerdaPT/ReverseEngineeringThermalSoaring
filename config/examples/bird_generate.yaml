@@ -116,7 +116,7 @@ run:
   n_birds: 25
   noise_level: 0.0
   prefix: ''
-  random_seed: ''
+  random_seed: null
   save_folder: /home/pedro/PycharmProjects/ReverseEngineeringThermalSoaring/example
   skip_landed: true
   verbosity: info
