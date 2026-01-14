@@ -1,0 +1,78 @@
+
+run_parameters:
+  alpha: [0.1, 0.1, 1.2]
+  # Early stopping
+  n_iterations: 5
+  relative_change_threshold: 0.01
+  n_relative_change: 3
+  min_iter: 5
+  verbosity: 1
+  save: true
+  save_only_last: false
+  input_folder: 'testing_dataset/None'
+  output_folder: 'testing_dataset/None/decomposition'
+  dt: 1
+  debug: false
+
+data_parameters:
+  columns:
+    time_col: 'time'
+    bird_name_col: 'bird_name'
+    X_col: 'X'
+    Y_col: 'Y'
+    Z_col: 'Z'
+#  filters:
+#    time:
+#      min: 20
+#      max: 0
+#      filter_type: 'relative'
+
+spline_parameters:
+  degree: 3
+  smoothing_factor: 1
+  extrapolate: 'linear'
+  weighted: true
+  weight_normalization: true
+#if ext=0, return the extrapolated value.
+#if ext=1, return 0
+#if ext=2, raise a ValueError
+#if ext=3, return the boundary value.
+
+thermal_core_ma_args:
+  center: true
+  min_periods: 399
+  win_type: gaussian
+  window: 400
+  window_args:
+    std: 200
+  debug: false
+
+
+smoothing_ma_args: null
+#  window: 3
+#  min_periods: 1
+#  center: True
+#  win_type: 'gaussian'
+#  window_args:
+#    std: 1
+
+
+physical_parameters:
+  #    CL: 1.2
+  #    CD: 0.09
+  #    wing_area: 0.6
+  #    mass: 3.3
+  CL: 1.5
+  CD: 0.09
+  mass: 3
+  wing_area: 0.6
+
+binning_parameters:
+  n_bins: [30, 10]
+  method: 'adaptive'
+  adaptive_kwargs:
+    adaptive_bin_min_size: 1
+    adaptive_bin_max_size: 5
+    max_bin_count: 20
+  min_occupation: 3
+  debug: False

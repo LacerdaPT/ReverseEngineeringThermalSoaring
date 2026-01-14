@@ -1,0 +1,122 @@
+air:
+  thermal:
+    profile:
+      from_function:
+        file: config/custom_functions.py
+        function: gaussian
+        parameters:
+          A: 4
+          radius: 30
+    rotation: null
+  turbulence:
+    data_path: data_files/turbulence/Vxyz_x=200_y=200_z=200_mu=5_x1=40_iteration=10000-99_100x3x200x200x200.h5
+    downsampling_factor: 1
+    normalization: 1
+    reset_period: 20
+    scales:
+      100: 0.3
+    weighting_method: null
+  wind:
+    from_data:
+      XYZT_values:
+      - 0
+      - 200
+      - 500
+      - 600
+      - 800
+      - 1000
+      used_vars: Z
+      values:
+      - - 1
+        - 0
+      - - 2
+        - 0
+      - - 0
+        - 1
+      - - 1
+        - 0
+      - - 2
+        - 0
+      - - 1
+        - 0
+bird:
+  control_parameters:
+    exploitation:
+      K:
+        distribution: normal
+        parameters:
+          loc: 0.5
+          scale: 0.2
+      thermalling_bank_angle:
+        distribution: uniform
+        parameters:
+          high: 40
+          low: 20
+    exploration:
+      alpha_degrees: 30
+      time: 20
+    general_args:
+      N_out_of_thermal: 50
+      bank_angle_max:
+        distribution: uniform
+        parameters:
+          high: 50
+          low: 40
+      debug: false
+      delta_bank_angle_max:
+        distribution: uniform
+        parameters:
+          high: 35
+          low: 25
+      exploration_exploitation_ratio:
+        distribution: uniform
+        parameters:
+          high: 0.8
+          low: 0.4
+      period: 0.5
+      sigma_noise_degrees: 0
+    glide: false
+  initial_conditions:
+    bank_angle:
+      distribution: uniform
+      parameters:
+        high: 30
+        low: -30
+    bearing:
+      distribution: uniform
+      parameters:
+        high: 6.28
+        low: 0
+    phi:
+      distribution: uniform
+      parameters:
+        high: 6.28
+        low: 0
+    rho:
+      distribution: uniform
+      parameters:
+        high: 5
+        low: 0
+    z:
+      distribution: uniform
+      parameters:
+        high: 55
+        low: 50
+  physical_parameters:
+    CD: 0.09
+    CL: 1.5
+    mass: 3.6
+    wing_area: 0.6
+run:
+  dt: 0.1
+  dt_to_save: 1
+  duration: 300
+  inspect_before_running: false
+  inspect_before_saving: false
+  n_birds: 25
+  noise_level: 0.0
+  prefix: ''
+  random_seed: ''
+  save_folder: /home/pedro/PycharmProjects/ReverseEngineeringThermalSoaring/example
+  skip_landed: true
+  verbosity: info
