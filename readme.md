@@ -3,6 +3,7 @@
 ## Brief project description.
 This repository contains the code used in the project "Soaring, aerodynamics and complex flows in thermals". 
 
+The code used to generate the turbulence field can be found in: https://github.com/MTA-ELTE-Collective-Behaviour-Research/FCT
 ## Installation instructions.
 ### Clone repository
 ### Dependencies
@@ -29,7 +30,7 @@ Note: In the following, the commands are written in Unix style and it may differ
 ### Run Flock Simulation
 `python run_flock_simulation.py config/examples/bird_generate.yaml`
 
-Check `config/default/simulate_datasets.md` for details.
+Check `config/default/readme.md` for details.
 ### Run reverse-engineering procedure
 `python run_reverse_engineer.py -y config/examples/decomposition_parameters.yaml`
 
